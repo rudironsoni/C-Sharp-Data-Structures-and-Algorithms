@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET 10 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Install NuGet packages
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build C-Sharp-Data-Structures-and-Algorithms.sln --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test C-Sharp-Data-Structures-and-Algorithms.sln --configuration Release --no-build --verbosity normal
+
+  benchmarks:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[bench]')
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET 10 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Run benchmarks (manual/conditional)
+        run: |
+          dotnet run -p DSA/Algorithms/AlgorithmsBenchmarks/AlgorithmsBenchmarks.csproj --configuration Release

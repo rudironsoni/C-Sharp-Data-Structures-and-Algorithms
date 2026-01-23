@@ -1,0 +1,15 @@
+<Project>
+  <PropertyGroup>
+    <!-- Root namespace for all projects -->
+    <RootNamespace>RudiRonsoni</RootNamespace>
+
+    <!-- C# language version -->
+    <LangVersion>latest</LangVersion>
+
+    <!-- Enable nullable reference types across the repo -->
+    <Nullable>enable</Nullable>
+
+    <!-- Enable implicit usings for runnable SDK targets (net10); netstandard2.1 does not support implicit usings -->
+    <ImplicitUsings Condition=" '$(TargetFramework)' != 'netstandard2.1' ">enable</ImplicitUsings>
+  </PropertyGroup>
+</Project>

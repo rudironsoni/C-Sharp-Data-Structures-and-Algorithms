@@ -897,3 +897,7 @@ FodyWeavers.xsd
 
 # MacOS .DS_Store
 .DS_Store
+/.idea/.idea.C-Sharp-Data-Structures-and-Algorithms/.idea/copilot.data.migration.agent.xml
+/.idea/.idea.C-Sharp-Data-Structures-and-Algorithms/.idea/copilot.data.migration.ask.xml
+/.idea/.idea.C-Sharp-Data-Structures-and-Algorithms/.idea/copilot.data.migration.edit.xml
+/.idea/.idea.C-Sharp-Data-Structures-and-Algorithms/.idea/GitLink.xml
